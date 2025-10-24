@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/img_animal"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="Image of the animal"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/tv_nom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/img_animal"
+            app:layout_constraintTop_toTopOf="@id/img_animal"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Chat" />
+
+        <TextView
+            android:id="@+id/tv_espece"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/img_animal"
+            app:layout_constraintTop_toBottomOf="@id/tv_nom"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Mammifère" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Détails"
+            app:icon="@android:drawable/ic_menu_info_details"
+            app:layout_constraintTop_toBottomOf="@id/img_animal"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Widget.Material3.Button.TextButton.Icon" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_supprimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Supprimer"
+            app:icon="@android:drawable/ic_delete"
+            app:layout_constraintTop_toBottomOf="@id/img_animal"
+            app:layout_constraintStart_toEndOf="@id/btn_details"
+            android:layout_marginStart="8dp"
+            app:backgroundTint="@color/design_default_color_error"
+            style="@style/Widget.Material3.Button.TextButton.Icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
