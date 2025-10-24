@@ -17,28 +17,31 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapterAnimaux: AdapterAnimaux
     private lateinit var radioGroupLayout: RadioGroup
 
-    // Mutable list to hold the data
+    // Liste des animaux (mutable pour permettre la suppression)
     private val animalList: MutableList<Animal> = mutableListOf()
+
+    // Définir le nombre de colonnes pour la vue Grille
+    private val GRID_COLUMNS = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. Initialize data
+        // 1. Initialiser les données (charger les animaux)
         loadAnimalData()
 
-        // 2. Initialize Views
+        // 2. Initialiser les vues
         recyclerView = findViewById(R.id.recycler_view_animaux)
         radioGroupLayout = findViewById(R.id.radio_group_layout)
 
-        // 3. Setup Adapter
+        // 3. Configurer l'Adaptateur
         adapterAnimaux = AdapterAnimaux(this, animalList)
         recyclerView.adapter = adapterAnimaux
 
-        // 4. Initial Layout: Linear (by default)
+        // 4. Définir le Layout initial (Linéaire par défaut)
         setLinearLayout()
 
-        // 5. Handle Layout Switching
+        // 5. Gérer le changement de Layout via RadioGroup
         radioGroupLayout.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_lineaire -> setLinearLayout()
@@ -47,29 +50,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Function to load initial data (ensure you have these drawables!)
+    // Fonction pour charger les données initiales
     private fun loadAnimalData() {
-        // NOTE: Replace R.drawable.xxx with your actual drawable resource IDs.
+        // IMPORTANT: Assurez-vous que ces ressources d'image existent dans res/drawable/
         animalList.add(Animal("Chat", "Mammifère", R.drawable.chat))
         animalList.add(Animal("Perroquet", "Oiseau", R.drawable.perroquet))
         animalList.add(Animal("Tigre", "Mammifère", R.drawable.tigre))
         animalList.add(Animal("Éléphant", "Mammifère", R.drawable.elephant))
         animalList.add(Animal("Serpent", "Reptile", R.drawable.serpent))
-        // Add more animals as needed...
     }
 
-    // Set layout to Linear (vertical list)
+    // Définit l'affichage en liste verticale (Linéaire)
     private fun setLinearLayout() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        // Refresh the adapter in case data was modified in the grid view
-        adapterAnimaux.notifyDataSetChanged()
+        // L'adaptateur est notifié automatiquement lors de la création
     }
 
-    // Set layout to Grid (2 columns)
+    // Définit l'affichage en grille (Grille)
     private fun setGridLayout() {
-        // Using 2 columns for the grid
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
-        // Refresh the adapter
-        adapterAnimaux.notifyDataSetChanged()
+        recyclerView.layoutManager = GridLayoutManager(this, GRID_COLUMNS)
     }
 }
